@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { signInWithGoogle } from '../../Firebase/Firebase'
+
 import FormInput from '../FormInput/FormInput'
 import CustomButton from '../CustomButton/CustomButton.js'
 import './SignIn.scss'
@@ -21,8 +23,6 @@ class SignIn extends React.Component {
 
     handleChange = event => {
         const { value, name } = event.target;
-        console.log(name)
-        console.log(value)
         this.setState({ [name]: value })
     }
 
@@ -46,9 +46,14 @@ class SignIn extends React.Component {
                         onChange={this.handleChange}
                         label='password'
                         required />
-                    <CustomButton type='submit'>
-                        Submit
-                    </CustomButton>
+                    <div className='buttons'>
+                        <CustomButton type='submit'>
+                            Sign in
+                        </CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSingIn>
+                            Sign in with Google
+                        </CustomButton>
+                    </div>
                 </form>
 
             </div>
