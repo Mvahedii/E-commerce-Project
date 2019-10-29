@@ -5,7 +5,7 @@ import Header from './Components/Header/Header'
 import HomePage from './Pages/Home/Home'
 import Shop from './Pages/Shop/Shop'
 import SingInandSignUp from './Pages/SingInandSignUp/SingInandSignUp'
-import { auth } from './Firebase/Firebase'
+import { auth, createUserProfileDocument } from './Firebase/Firebase'
 
 import './App.css';
 
@@ -22,9 +22,24 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsibscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user })
-    })
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+
+          console.log(this.state);
+        });
+      }
+
+      this.setState({ currentUser: userAuth });
+    });
   }
 
   componentWillUnmount() {
