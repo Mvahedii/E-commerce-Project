@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { auth } from '../../Firebase/Firebase'
 
 import ShoppingBag from '../ShoppingBag/ShoppingBag'
+import ShoppingBagDropdown from '../ShoppingBagDropdown/ShoppingBagDropdown'
 import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg'
 import './Header.scss';
 
@@ -27,6 +28,7 @@ const Header = ({ currentUser }) => {
                 }
                 <ShoppingBag />
             </div>
+            <ShoppingBagDropdown />
         </div>
     )
 }
