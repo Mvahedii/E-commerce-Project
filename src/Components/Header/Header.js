@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { auth } from '../../Firebase/Firebase'
 
+import ShoppingBag from '../ShoppingBag/ShoppingBag'
 import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg'
 import './Header.scss';
 
@@ -24,6 +25,7 @@ const Header = ({ currentUser }) => {
                             <Link className='option' to='/sign-in'>SIGN IN</Link>
                         )
                 }
+                <ShoppingBag />
             </div>
         </div>
     )
