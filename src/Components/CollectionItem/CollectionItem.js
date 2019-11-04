@@ -1,10 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import CustomButton from '../CustomButton/CustomButton'
+import { addToShoppingBag } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownActions'
 
 import './CollectionItem.scss'
 
-const CollectionItem = ({ name, imageUrl, price }) => {
+const CollectionItem = ({ item, addToShoppingBag }) => {
+
+    const { name, price, imageUrl } = item
 
     return (
         <div className='collection__item'>
@@ -18,10 +22,17 @@ const CollectionItem = ({ name, imageUrl, price }) => {
                 <span className='name'>{name}</span>
                 <span className='price'>{price}</span>
             </div>
-            <CustomButton className='custom__button' inverted>Add to Cart</CustomButton>
+            <CustomButton
+                onClick={() => addToShoppingBag(item)}
+                className='custom__button'
+                inverted>Add to Cart</CustomButton>
         </div>
     )
 
 }
 
-export default CollectionItem;
+const mapDispatchToProps = dispatch => ({
+    addToShoppingBag: item => dispatch(addToShoppingBag(item))
+})
+
+export default connect(null, mapDispatchToProps)(CollectionItem);

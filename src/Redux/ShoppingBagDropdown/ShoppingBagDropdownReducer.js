@@ -1,7 +1,8 @@
 import ShoppingBagDropdownActionTypes from './ShoppingBagDropdownActionTypes'
 
 const INITIAL_STATE = {
-    hidden: true
+    hidden: true,
+    shoppingBagDropdownItems: []
 }
 
 const ShoppingBagDropdownReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const ShoppingBagDropdownReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 hidden: !state.hidden
+            }
+        case ShoppingBagDropdownActionTypes.ADD_TO_SHOPPINGBAG:
+            return {
+                ...state,
+                shoppingBagDropdownItems: [...state.shoppingBagDropdownItems, action.payload]
             }
         default:
             return state;
