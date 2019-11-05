@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import ShoppingBagDropdownItems from '../ShoppingBagDropdownItems/ShoppingBagDropdownItems'
 import CustomButton from '../CustomButton/CustomButton'
+import { selectShoppingBagDropdownItems } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownSelectors'
 
 import './ShoppingBagDropdown.scss'
 
@@ -22,8 +23,8 @@ const ShoppingBagDropdown = ({ shoppingBagDropdownItems }) => (
     </div>
 )
 
-const mapStateToProps = ({ shoppingBagDropdown: { shoppingBagDropdownItems } }) => ({
-    shoppingBagDropdownItems,
+const mapStateToProps = (state) => ({
+    shoppingBagDropdownItems: selectShoppingBagDropdownItems(state)
 })
 
 export default connect(mapStateToProps)(ShoppingBagDropdown);
