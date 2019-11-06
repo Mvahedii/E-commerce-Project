@@ -5,11 +5,13 @@ import { withRouter } from 'react-router-dom'
 
 import ShoppingBagDropdownItems from '../ShoppingBagDropdownItems/ShoppingBagDropdownItems'
 import CustomButton from '../CustomButton/CustomButton'
+
+import { toggleShoppingBagDropdown } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownActions'
 import { selectShoppingBagDropdownItems } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownSelectors'
 
 import './ShoppingBagDropdown.scss'
 
-const ShoppingBagDropdown = ({ shoppingBagDropdownItems, history }) => (
+const ShoppingBagDropdown = ({ shoppingBagDropdownItems, history, dispatch }) => (
     <div className='dropdown'>
         <div className='items'>
             {
@@ -24,7 +26,11 @@ const ShoppingBagDropdown = ({ shoppingBagDropdownItems, history }) => (
                     )
             }
         </div>
-        <CustomButton onClick={() => history.push('/checkout')}>GO TO CHECKOUT</CustomButton>
+        <CustomButton
+            onClick={() => {
+                history.push('/checkout')
+                dispatch(toggleShoppingBagDropdown())
+            }}>GO TO CHECKOUT</CustomButton>
     </div>
 )
 
