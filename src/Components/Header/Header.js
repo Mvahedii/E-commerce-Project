@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { auth } from '../../Firebase/Firebase'
+import { createStructuredSelector } from 'reselect'
 
 import ShoppingBag from '../ShoppingBag/ShoppingBag'
 import ShoppingBagDropdown from '../ShoppingBagDropdown/ShoppingBagDropdown'
+import { selectShoppingBagDropdownHidden } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownSelectors'
+import { selectCurrentUser } from '../../Redux/User/UserSelectors'
 import { ReactComponent as Logo } from '../../assets/4.3 crown.svg.svg'
 import './Header.scss';
 
@@ -35,9 +38,9 @@ const Header = ({ currentUser, hidden }) => {
     )
 }
 
-const mapStateToProps = ({ user: { currentUser }, shoppingBagDropdown: { hidden } }) => ({
-    currentUser,
-    hidden
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectShoppingBagDropdownHidden
 })
 
 export default connect(mapStateToProps)(Header);

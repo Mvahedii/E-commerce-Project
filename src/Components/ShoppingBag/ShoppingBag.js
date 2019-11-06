@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 
 import { toggleShoppingBagDropdown } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownActions'
 import { ReactComponent as ShoppingBagIcon } from '../../assets/11.1 shopping-bag.svg.svg'
@@ -14,9 +15,9 @@ const ShoppingBag = ({ toggleShoppingBagDropdown, itemsCount }) => (
     </div>
 )
 
-const mapStateToProps = state => (
+const mapStateToProps = createStructuredSelector(
     {
-        itemsCount: selectShoppingBagDropdownItemsCount(state)
+        itemsCount: selectShoppingBagDropdownItemsCount
     }
 )
 
