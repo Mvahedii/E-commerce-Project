@@ -2,6 +2,8 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
+import CheckoutItems from '../../Components/CheckoutItems/CheckoutItems'
+
 import { createStructuredSelector } from 'reselect'
 
 import { selectShoppingBagDropdownItems, selectShoppingBagTotal } from '../../Redux/ShoppingBagDropdown/ShoppingBagDropdownSelectors'
@@ -28,7 +30,12 @@ const Checkout = ({ shoppingBagDropdownItems, shoppingBagTotal }) => (
             </div>
         </div>
         {
-            shoppingBagDropdownItems.map(shoppingBagDropdownItem => shoppingBagDropdownItem.name)
+            shoppingBagDropdownItems.map(shoppingBagDropdownItem =>
+                <CheckoutItems
+                    key={shoppingBagDropdownItem.id}
+                    shoppingBagDropdownItem={shoppingBagDropdownItem}
+                />
+            )
         }
         <div className='total'>
             <span>TOTAL : ${shoppingBagTotal}</span>

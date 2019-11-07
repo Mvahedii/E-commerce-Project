@@ -17,7 +17,15 @@ const ShoppingBagDropdownReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 shoppingBagDropdownItems:
-                addItemsToShoppingBag(state.shoppingBagDropdownItems, action.payload)
+                    addItemsToShoppingBag(state.shoppingBagDropdownItems, action.payload)
+            }
+        case ShoppingBagDropdownActionTypes.REMOVE_ITEM_FROM_SHOPPINGBAG:
+            return {
+                ...state,
+                shoppingBagDropdownItems:
+                    state.shoppingBagDropdownItems.find(
+                        shoppingBagDropdownItem => shoppingBagDropdownItem.id !== action.payload.id
+                    )
             }
         default:
             return state;
