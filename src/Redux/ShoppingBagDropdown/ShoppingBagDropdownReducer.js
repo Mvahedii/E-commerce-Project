@@ -23,7 +23,7 @@ const ShoppingBagDropdownReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 shoppingBagDropdownItems:
-                    state.shoppingBagDropdownItems.find(
+                    state.shoppingBagDropdownItems.filter(
                         shoppingBagDropdownItem => shoppingBagDropdownItem.id !== action.payload.id
                     )
             }
