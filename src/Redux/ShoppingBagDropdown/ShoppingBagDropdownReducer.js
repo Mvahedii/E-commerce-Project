@@ -1,5 +1,5 @@
 import ShoppingBagDropdownActionTypes from './ShoppingBagDropdownActionTypes'
-import { addItemsToShoppingBag } from './ShoppingBagDropdownUtils'
+import { addItemsToShoppingBag, decreaseQuantityItem } from './ShoppingBagDropdownUtils'
 
 const INITIAL_STATE = {
     hidden: true,
@@ -26,6 +26,12 @@ const ShoppingBagDropdownReducer = (state = INITIAL_STATE, action) => {
                     state.shoppingBagDropdownItems.filter(
                         shoppingBagDropdownItem => shoppingBagDropdownItem.id !== action.payload.id
                     )
+            }
+        case ShoppingBagDropdownActionTypes.DECREASE_QUANTITY_ITEM:
+            return {
+                ...state,
+                shoppingBagDropdownItems:
+                    decreaseQuantityItem(state.shoppingBagDropdownItems, action.payload)
             }
         default:
             return state;

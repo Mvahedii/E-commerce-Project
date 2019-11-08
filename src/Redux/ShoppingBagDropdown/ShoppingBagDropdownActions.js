@@ -13,3 +13,8 @@ export const removeItemFromShoppingBag = item => ({
     type: ShoppingBagDropdownActionTypes.REMOVE_ITEM_FROM_SHOPPINGBAG,
     payload: item
 })
+
+export const decreaseQuntityItem = item => ({
+    type: ShoppingBagDropdownActionTypes.DECREASE_QUANTITY_ITEM,
+    payload: item
+})
